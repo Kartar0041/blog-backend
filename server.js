@@ -1,12 +1,16 @@
 import express from "express";
 import mongooses from "mongoose";
+import { blogRouter } from "./src/routes/blogRoutes.js";
 
 const app = express();
 
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.send("Hello Node")
 })
+
+// Routes for application
+app.use('/', blogRouter);
 
 const connectDB = async () => {
   try {

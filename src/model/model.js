@@ -16,15 +16,9 @@ const blogPostSchema = new Schema({
     type: String,
     required: true
   },
-  createdAt: { 
-    type: Date,
-    default: Date.now()
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now()
-  }
-});
+},
+  { timestamps: true }
+);
 
 // Blog Post collection
 const Blogs = mongoose.model('Blogs', blogPostSchema);
