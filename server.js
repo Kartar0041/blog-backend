@@ -13,15 +13,14 @@ const connectDB = async () => {
     const conn = await mongooses.connect(process.env.DB_URI, {
       useNewUrlParser: true,
     })
-    console.log(`MongoDB Connected: {conn.connection.host}`);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(error.message);
     process.exit(1);
   }
 }
 
-connectDB()
-
+connectDB();
 
 app.listen(process.env.PORT, () => {
   console.log("App is listening on port", process.env.PORT)
