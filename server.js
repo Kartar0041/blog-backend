@@ -1,8 +1,13 @@
 import express from "express";
 import mongooses from "mongoose";
 import { blogRouter } from "./src/routes/blogRoutes.js";
+import { userRouter } from "./src/routes/userRoutes.js";
 
 const app = express();
+
+// Used express json (alternate for body-parser)
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 
 
 app.get('/test', (req, res) => {
@@ -11,12 +16,11 @@ app.get('/test', (req, res) => {
 
 // Routes for application
 app.use('/', blogRouter);
+app.use('/users', userRouter);
 
 const connectDB = async () => {
   try {
-    const conn = await mongooses.connect(process.env.DB_URI, {
-      useNewUrlParser: true,
-    })
+    const conn = await mongooses.connect(process.env.DB_URI)
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(error.message);
