@@ -9,6 +9,12 @@ const userSchema = joi.object({
   password: joi.string().min(8).required()
 })
 
+// Validate user schema signin
+const userSchemaSignin = joi.object({
+  email: joi.string().email().required(),
+  password: joi.string().min(8).required()
+})
+
 
 // Validate Schema
 const validateUser = (req, res, next) => {
@@ -20,7 +26,18 @@ const validateUser = (req, res, next) => {
   }
 };
 
+// Validate Schema Signin
+const validateUserSignIn = (req, res, next) => {
+  const { error } = userSchemaSignin.validate(req.body)
+  if (error) {
+    res.status(400).json({ message: error.details[0].message })
+  } else {
+    next();
+  }
+};
+
 export {
-  validateUser
+  validateUser,
+  validateUserSignIn
 }
 
