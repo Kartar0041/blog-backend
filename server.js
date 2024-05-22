@@ -1,9 +1,10 @@
 import express from "express";
 import mongooses from "mongoose";
 import { blogRouter } from "./src/routes/blogRoutes.js";
+import { categoryRouter } from "./src/routes/category.js";
 
 const app = express();
-
+app.use(express.json())
 
 app.get('/test', (req, res) => {
   res.send("Hello Node")
@@ -11,10 +12,10 @@ app.get('/test', (req, res) => {
 
 // Routes for application
 app.use('/', blogRouter);
-
+app.use("/category",categoryRouter)
 const connectDB = async () => {
   try {
-    const conn = await mongooses.connect(process.env.DB_URI, {
+    const conn = await mongooses.connect("mongodb://localhost:27017/blog_app", {
       useNewUrlParser: true,
     })
     console.log(`MongoDB Connected: ${conn.connection.host}`);
@@ -26,7 +27,7 @@ const connectDB = async () => {
 
 connectDB();
 
-app.listen(process.env.PORT, () => {
-  console.log("App is listening on port", process.env.PORT)
+app.listen(5000, () => {
+  console.log("App is listening on port", 5000)
 })
 
