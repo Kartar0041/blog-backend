@@ -6,7 +6,8 @@ const userSchema = joi.object({
   firstName: joi.string().min(0).max(10).optional(),
   lastName: joi.string().min(0).max(10).optional(),
   email: joi.string().email().required(),
-  password: joi.string().min(8).required()
+  password: joi.string().min(8).required(),
+  isAdmin: joi.boolean().required()
 })
 
 // Validate user schema signin

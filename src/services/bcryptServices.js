@@ -30,6 +30,16 @@ export class JwtService {
    return jwt.sign({
       data: data,
     }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  } 
+
+  verifyToken(data){
+    return jwt.verify(data, process.env.JWT_SECRET, function(err, decoded) {
+      if(err){
+        return false;
+      } else {
+        return decoded
+      }
+    });
   }
 
   async comparePassword(inputPassword, hashPassword){

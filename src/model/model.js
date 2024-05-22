@@ -42,6 +42,10 @@ const userSchema = new Schema({
     trim: true,
     unique: true,
   },
+  isAdmin: {
+    type: Boolean,
+    required: true,
+  },
   password: {
     type: String,
     required: true,

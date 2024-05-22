@@ -15,8 +15,8 @@ app.get('/test', (req, res) => {
 })
 
 // Routes for application
-app.use('/', blogRouter);
 app.use('/users', userRouter);
+app.use('/blogs', blogRouter);
 
 const connectDB = async () => {
   try {
