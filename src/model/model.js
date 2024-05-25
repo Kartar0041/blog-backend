@@ -20,9 +20,44 @@ const blogPostSchema = new Schema({
   { timestamps: true }
 );
 
-// Blog Post collection
+
+// Users Schema
+const userSchema = new Schema({
+  user_name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  firstName: {
+    type: String,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+  }
+});
+
+// Collections
 const Blogs = mongoose.model('Blogs', blogPostSchema);
+const Users = mongoose.model('Users', userSchema);
 
 export {
-  Blogs
+  Blogs,
+  Users
 }
